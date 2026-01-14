@@ -5,9 +5,15 @@ import type { Task } from './task.model';
 @Injectable({ providedIn: 'root' })
 
 export class TasksService {
-    taskData = signal<Task[]>([]);
+    tasks = signal<Task[]>([]);
 
-    addTask(newTask: Task) {
-        this.taskData.update(tasks => [...tasks, newTask]);
+    addTask(taskData: { title: string; description: string }) {
+        const newTask: Task = {
+            ...taskData,
+            id: Math.random().toString(36).substring(2, 9),
+            status: 'OPEN'
+        }
+
+        this.tasks.update(oldTasks => [...oldTasks, newTask]);
     };
 };

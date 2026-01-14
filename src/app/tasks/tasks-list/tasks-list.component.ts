@@ -17,7 +17,7 @@ export class TasksListComponent {
 
   private tasksService = inject(TasksService);
 
-  tasks = computed(() => this.tasksService.taskData());
+  tasks = computed(() => this.tasksService.tasks());
 
   onChangeTasksFilter(filter: string) {
     this.selectedFilter.set(filter);
