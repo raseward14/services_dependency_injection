@@ -16,11 +16,9 @@ export class NewTaskComponent {
   private tasksService = inject(TasksService);
 
   onAddTask(title: string, description: string) {
-    this.tasksService.addTask({
-      id: Math.random().toString(36).substring(2, 9),
+    this.tasksService.addTask({  
       title: title,
       description: description,
-      status: 'OPEN'
     })
     this.formEl()?.nativeElement.reset();
   }
