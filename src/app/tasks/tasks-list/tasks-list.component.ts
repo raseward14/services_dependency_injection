@@ -15,7 +15,8 @@ export class TasksListComponent {
   selectedFilter = signal<string>('all');
   //tasks = [];
 
-  private tasksService = inject(TasksService);
+  // private tasksService = inject(TasksService);
+  constructor(private tasksService:TasksService) {};
 
   tasks = computed(() => this.tasksService.tasks());
 
