@@ -12,15 +12,11 @@ import { TasksService } from '../tasks.service';
   imports: [TaskItemComponent],
 })
 export class TasksListComponent {
+  private tasksService = inject(TasksService);
   selectedFilter = signal<string>('all');
-  //tasks = [];
-
-  // private tasksService = inject(TasksService);
-  constructor(private tasksService:TasksService) {};
-
-  tasks = computed(() => this.tasksService.tasks());
+  tasks = this.tasksService.allTasks;
 
   onChangeTasksFilter(filter: string) {
     this.selectedFilter.set(filter);
   }
-}
+};
