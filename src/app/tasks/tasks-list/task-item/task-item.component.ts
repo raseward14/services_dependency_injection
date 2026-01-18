@@ -3,6 +3,8 @@ import { FormsModule } from '@angular/forms';
 
 import { Task, TaskStatus } from '../../task.model';
 
+import { TasksService } from '../../tasks.service';
+
 @Component({
   selector: 'app-task-item',
   standalone: true,
@@ -25,6 +27,8 @@ export class TaskItemComponent {
     }
   });
 
+  constructor (private tasksService: TasksService) {};
+
   onChangeTaskStatus(taskId: string, status: string) {
     let newStatus: TaskStatus = 'OPEN';
 
@@ -41,5 +45,10 @@ export class TaskItemComponent {
       default:
         break;
     }
+
+    this.tasksService.updateTask({ 
+      taskId, 
+      newStatus 
+    });
   }
 }
