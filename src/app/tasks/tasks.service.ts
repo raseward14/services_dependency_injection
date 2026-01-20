@@ -19,7 +19,7 @@ export class TasksService {
         this.tasks.update(oldTasks => [...oldTasks, newTask]);
     };
 
-    updateTask(taskData: { taskId: string, newStatus: TaskStatus }) {
+    updateTaskStatus(taskData: { taskId: string, newStatus: TaskStatus }) {
         console.log(taskData.taskId, taskData.newStatus);
         
         const updatedTasks = this.tasks().map((task: Task) =>
