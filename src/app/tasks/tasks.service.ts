@@ -19,11 +19,17 @@ export class TasksService {
         this.tasks.update(oldTasks => [...oldTasks, newTask]);
     };
 
-    updateTaskStatus(taskData: { taskId: string, newStatus: TaskStatus }) {        
-        const updatedTasks = this.tasks().map((task: Task) =>
-            task.id === taskData.taskId ? { ...task, status: taskData.newStatus } : task
-        );
+    updateTaskStatus(taskData: { taskId: string, newStatus: TaskStatus }) {
+        // const updatedTasks = this.tasks().map((task: Task) =>
+        //     task.id === taskData.taskId ? { ...task, status: taskData.newStatus } : task
+        // );
 
-        this.tasks.set(updatedTasks);
+        // this.tasks.set(updatedTasks);
+
+        this.tasks.update((oldTasks) => 
+            oldTasks.map((task) =>
+                task.id === taskData.taskId ? { ...task, status: taskData.newStatus } : task
+            )
+        );
     };
 };
