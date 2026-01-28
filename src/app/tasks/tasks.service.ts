@@ -3,9 +3,9 @@ import { inject, Injectable, signal } from '@angular/core';
 import type { Task, TaskStatus } from './task.model';
 import { LoggingService } from './logging.service';
 
-@Injectable({ 
-    providedIn: 'root', 
-})
+// @Injectable({ 
+//     providedIn: 'root', 
+// })
 
 export class TasksService {
     private tasks = signal<Task[]>([]);
