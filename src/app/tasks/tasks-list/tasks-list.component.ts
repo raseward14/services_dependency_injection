@@ -4,6 +4,7 @@ import { TaskItemComponent } from './task-item/task-item.component';
 
 import { TasksService } from '../tasks.service';
 import { TasksServiceToken } from '../../../main';
+import { TaskValuesToken } from '../../../main';
 
 @Component({
   selector: 'app-tasks-list',
@@ -14,6 +15,7 @@ import { TasksServiceToken } from '../../../main';
 })
 export class TasksListComponent {
   private tasksService = inject(TasksServiceToken);
+  public taskValues = inject(TaskValuesToken);
   private selectedFilter = signal<string>('all');
   tasks = computed(() => {
     switch (this.selectedFilter()) {

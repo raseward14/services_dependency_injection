@@ -6,12 +6,12 @@ import { TasksService } from './app/tasks/tasks.service';
 import { TaskStatusOptions } from './app/tasks/task.model';
 
 export const TasksServiceToken = new InjectionToken<TasksService>('tasks-service-token');
-export const TasksValueToken = new InjectionToken('task-status-options');
+export const TaskValuesToken = new InjectionToken<typeof TaskStatusOptions>('task-status-options');
 
 bootstrapApplication(AppComponent, {
     providers: [
         {provide: TasksServiceToken, useClass: TasksService},
-        {provide: TasksValueToken, useValue: TaskStatusOptions}
+        {provide: TaskValuesToken, useValue: TaskStatusOptions}
     ]
 }).catch((err) => console.error(err));
 
