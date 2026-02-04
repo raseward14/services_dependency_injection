@@ -1,9 +1,8 @@
 import { Component, computed, input, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
-import { Task, TaskStatus } from '../../task.model';
+import { TASK_STATUS_OPTIONS, Task, TaskStatus } from '../../task.model';
 import { TasksServiceToken } from '../../../../main';
-import { TASK_STATUS_OPTIONS, taskStatusOptionsProvider } from '../../task.model';
 
 
 @Component({
@@ -12,7 +11,6 @@ import { TASK_STATUS_OPTIONS, taskStatusOptionsProvider } from '../../task.model
   imports: [FormsModule],
   templateUrl: './task-item.component.html',
   styleUrl: './task-item.component.css',
-  providers: [taskStatusOptionsProvider]
 })
 export class TaskItemComponent {
   private tasksService = inject(TasksServiceToken);
