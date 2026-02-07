@@ -8,10 +8,15 @@ import { LoggingService } from './logging.service';
 // })
 
 export class TasksService {
-    private tasks = signal<Task[]>([]);
+    // private tasks = signal<Task[]>([]);
+    private tasks: Task[] = [];
+
     private loggingService = inject(LoggingService);
 
-    allTasks = this.tasks.asReadonly();
+    // allTasks = this.tasks.asReadonly();
+    get allTasks() {
+        return [...this.tasks]
+    }
 
     addTask(taskData: { title: string; description: string }) {
         const newTask: Task = {
@@ -19,7 +24,8 @@ export class TasksService {
             id: Math.random().toString(36).substring(2, 9),
             status: 'OPEN'
         }
-        this.tasks.update(oldTasks => [...oldTasks, newTask]);
+        // this.tasks.update(oldTasks => [...oldTasks, newTask]);
+        this.tasks = [...this.tasks, newTask];
         this.loggingService.log(`New task added with title: ${taskData.title}`);
     };
 
@@ -30,11 +36,14 @@ export class TasksService {
 
         // this.tasks.set(updatedTasks);
 
-        this.tasks.update((oldTasks) => 
-            oldTasks.map((task) =>
-                task.id === taskData.taskId ? { ...task, status: taskData.newStatus } : task
-            )
-        );
+        // this.tasks.update((oldTasks) => 
+        //     oldTasks.map((task) =>
+        //         task.id === taskData.taskId ? { ...task, status: taskData.newStatus } : task
+        //     )
+        // );
+        this.tasks = this.tasks.map((task) => 
+            task.id === taskData.taskId ? { ...task, status: taskData.newStatus } : task
+        )
         this.loggingService.log(`Task status changed to: ${taskData.newStatus}`);
     };
 };
